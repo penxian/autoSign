@@ -26,5 +26,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i
-    - run: node index.mjs --cookie="${{vars.COOKIE}}"
+    - run: pnpm i
+    - run: node index.mjs --cookie="${{COOKIE.COOKIE}}"
