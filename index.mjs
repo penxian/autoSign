@@ -80,8 +80,6 @@ function getAccountInfo() {
       } else {
         console.log('签到失败')
       }
-    } else {
-      console.log('获取签到信息失败')
     }
   } else {
     console.log('cookie失效')
