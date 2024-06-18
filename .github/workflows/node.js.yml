@@ -30,6 +30,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+      env:
+        COOKIE: ${{secrets.COOKIE}}
     - name: create env file
       run: |
         touch .env
