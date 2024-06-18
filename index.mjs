@@ -1,4 +1,3 @@
-import minimist from 'minimist'
 let cookie = process.env.COOKIE
 
 function getGrowthSign() {
@@ -13,7 +12,6 @@ function getGrowthSign() {
     },
     body: JSON.stringify(payload)
   }).then((res) => res.json()).then((data) => {
-    console.log(data)
     if (data.data) {
       return data?.data?.sign_daily_reward
     } else {
@@ -61,14 +59,12 @@ function getAccountInfo() {
 
 
 (async () => {
-  console.log(process.env.COOKIE)
   if (!cookie) {
     console.log('请设置 COOKIE 环境变量')
     return
   }
   const userinfo = await getAccountInfo()
   if (userinfo) {
-    console.log('昵称', userinfo['nickname'])
     const signInfo = await getGrowthInfo()
     console.log('签到情况', signInfo?.cap_sign?.sign_daily)
     if (signInfo?.cap_sign?.sign_daily) {
@@ -77,12 +73,17 @@ function getAccountInfo() {
       console.log(msg)
     } else {
       const growthSign = await getGrowthSign()
-      console.log('签到结果', growthSign)
       if (growthSign) {
         const msg = `✅ 执行签到: 今日签到+${growthSign / 1024 / 1024}MB，
         连签进度(${(signInfo['cap_sign']['sign_progress'] + 1)/signInfo['cap_sign']['sign_target']})`
         console.log('签到成功', msg)
+      } else {
+        console.log('签到失败')
       }
+    } else {
+      console.log('获取签到信息失败')
     }
+  } else {
+    console.log('cookie失效')
   }
 })()

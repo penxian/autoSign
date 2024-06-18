@@ -8,8 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "minimist": "^1.2.8"
-  }
+  "license": "ISC"
 }
