@@ -32,5 +32,9 @@ jobs:
         cache: 'pnpm'
       env:
         COOKIE: ${{vars.COOKIE}}
+    - name: create env file
+      run: |
+        touch .env
+        echo ABC='ABC' >> .env
     - run: pnpm i
     - run: node --env-file .env index.mjs
