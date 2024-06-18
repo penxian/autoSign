@@ -1,5 +1,5 @@
 import minimist from 'minimist'
-const cookie = '
+let cookie = ''
 
 function getGrowthSign() {
   let url =  "https://drive-m.quark.cn/1/clouddrive/capacity/growth/sign?"
@@ -61,7 +61,11 @@ function getAccountInfo() {
 
 
 (async () => {
-  console.log(minimist(process.argv.slice(2)));
+  if (!process.env.cookie) {
+    cookie = minimist(process.argv.slice(2)).cookie;
+  } else {
+    cookie = process.env.cookie
+  }
   const userinfo = await getAccountInfo()
   if (!userinfo) {
     console.log('昵称', userinfo['nickname'])
