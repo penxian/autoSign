@@ -61,6 +61,7 @@ function getAccountInfo() {
 
 
 (async () => {
+  console.log(process.env.COOKIE, cookie)
   const userinfo = await getAccountInfo()
   if (!userinfo) {
     console.log('昵称', userinfo['nickname'])

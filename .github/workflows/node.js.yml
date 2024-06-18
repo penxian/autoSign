@@ -33,4 +33,4 @@ jobs:
       env:
         COOKIE: ${{secrets.COOKIE}}
     - run: pnpm i
-    - run: node index.mjs --cookie="$COOKIE"
+    - run: node index.mjs
