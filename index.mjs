@@ -61,10 +61,14 @@ function getAccountInfo() {
 
 
 (async () => {
-  console.log(process.env, cookie)
+  console.log(process.env.COOKIE)
+  if (!cookie) {
+    console.log('请设置 COOKIE 环境变量')
+    return
+  }
   const userinfo = await getAccountInfo()
-  console.log('昵称', userinfo['nickname'])
-  if (!userinfo) {
+  if (userinfo) {
+    console.log('昵称', userinfo['nickname'])
     const signInfo = await getGrowthInfo()
     console.log('签到情况', signInfo?.cap_sign?.sign_daily)
     if (signInfo?.cap_sign?.sign_daily) {
