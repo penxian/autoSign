@@ -8,7 +8,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-    
+  schedule:
+    - cron: '0 16 * * *'  
 jobs:
   build:
 
@@ -29,5 +30,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
+      env:
+        COOKIE: ${{secrets.COOKIE}}
     - run: pnpm i
-    - run: node index.mjs --cookie="${{secrets.COOKIE}}"
+    - run: node index.mjs --cookie="$COOKIE"
