@@ -12,9 +12,10 @@ on:
     - cron: '0 16 * * *'  
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    env:
+      COOKIE: ${{vars.COOKIE}}
+      COOKIE2: ${{secrets.COOKIE}}
     strategy:
       matrix:
         node-version: [20]
@@ -30,11 +31,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
-      env:
-        COOKIE: ${{vars.COOKIE}}
+      
     - name: create env file
       run: |
         touch .env
-        echo ABC='ABC' >> .env
+        echo COOKIE2=${COOKIE2} >> .env
     - run: pnpm i
     - run: node --env-file .env index.mjs
