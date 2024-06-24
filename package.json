@@ -2,10 +2,9 @@
   "name": "autoSign",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "start": "node --unhandled-rejections=strict index.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --unhandled-rejections=strict index.mjs"
   },
   "keywords": [],
   "author": "",
