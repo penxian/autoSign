@@ -12,7 +12,10 @@ async function getGrowthSign() {
       headers: {
         cookie
       },
-      json: payload
+      json: payload,
+      timeout: {
+        request: 15000
+      }
     })
     .json();
   if (data.data) {
@@ -31,6 +34,9 @@ async function getGrowthInfo() {
     method: "get",
     headers: {
       cookie
+    },
+    timeout: {
+      request: 15000
     }
   }).json();
   if (data.data) {
@@ -48,6 +54,9 @@ async function getAccountInfo() {
     method: "get",
     headers: {
       cookie
+    },
+    timeout: {
+      request: 15000
     }
   }).json();
 
